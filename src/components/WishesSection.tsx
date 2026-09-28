@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Heart,
   Send,
@@ -15,6 +15,12 @@ import {
 import { Language, BlessingEntry } from '../types';
 import { initialBlessings } from '../data/initialWeddingData';
 import { FloralDivider, IslamicStarMotif } from './Ornaments';
+import {
+  subscribeBlessings,
+  addBlessingToCloud,
+  updateBlessingInCloud,
+  deleteBlessingFromCloud
+} from '../services/weddingSync';
 
 interface WishesSectionProps {
   lang: Language;
@@ -50,6 +56,21 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
     return initialBlessings;
   });
 
+  // Real-time listener for guest blessings from Cloud Firestore
+  useEffect(() => {
+    const unsubscribe = subscribeBlessings((cloudBlessings) => {
+      if (cloudBlessings && cloudBlessings.length > 0) {
+        setWishes(cloudBlessings);
+        try {
+          localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(cloudBlessings));
+        } catch (e) {}
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   const [author, setAuthor] = useState('');
   const [relation, setRelation] = useState('');
   const [message, setMessage] = useState('');
@@ -72,7 +93,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
     } catch (e) {}
   };
 
-  const handleAddWish = (e: React.FormEvent) => {
+  const handleAddWish = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!author.trim() || !message.trim()) return;
 
@@ -83,8 +104,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
     ];
     const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
 
-    const newWish: BlessingEntry = {
-      id: `wish-${Date.now()}`,
+    const wishPayload: Omit<BlessingEntry, 'id'> = {
       author: author.trim(),
       relation: relation.trim() || (lang === 'bn' ? 'শুভাকাঙ্ক্ষী' : 'Well-wisher'),
       message: message.trim(),
@@ -95,8 +115,16 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
       pinned: false
     };
 
-    const updated = [newWish, ...wishes];
-    saveWishes(updated);
+    try {
+      await addBlessingToCloud(wishPayload);
+    } catch (err) {
+      // Fallback local
+      const newWish: BlessingEntry = {
+        ...wishPayload,
+        id: `wish-${Date.now()}`
+      };
+      saveWishes([newWish, ...wishes]);
+    }
 
     setAuthor('');
     setRelation('');
@@ -106,15 +134,20 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
   };
 
   const handleLike = (id: string) => {
-    const updated = wishes.map((w) => (w.id === id ? { ...w, likes: w.likes + 1 } : w));
+    const target = wishes.find((w) => w.id === id);
+    const newLikes = (target?.likes || 0) + 1;
+    const updated = wishes.map((w) => (w.id === id ? { ...w, likes: newLikes } : w));
     saveWishes(updated);
+    updateBlessingInCloud(id, { likes: newLikes }).catch(() => {});
   };
 
   // Host Action: Toggle visibility (Show / Hide)
   const handleToggleHide = (id: string) => {
     const target = wishes.find((w) => w.id === id);
-    const updated = wishes.map((w) => (w.id === id ? { ...w, hidden: !w.hidden } : w));
+    const newHidden = !target?.hidden;
+    const updated = wishes.map((w) => (w.id === id ? { ...w, hidden: newHidden } : w));
     saveWishes(updated);
+    updateBlessingInCloud(id, { hidden: newHidden }).catch(() => {});
 
     if (target?.hidden) {
       showNotice(lang === 'bn' ? 'দোয়াটি সবার জন্য দৃশ্যমান করা হয়েছে' : 'Du\'a is now visible to all guests');
@@ -125,8 +158,11 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
 
   // Host Action: Toggle Pin to Top
   const handleTogglePin = (id: string) => {
-    const updated = wishes.map((w) => (w.id === id ? { ...w, pinned: !w.pinned } : w));
+    const target = wishes.find((w) => w.id === id);
+    const newPinned = !target?.pinned;
+    const updated = wishes.map((w) => (w.id === id ? { ...w, pinned: newPinned } : w));
     saveWishes(updated);
+    updateBlessingInCloud(id, { pinned: newPinned }).catch(() => {});
     showNotice(lang === 'bn' ? 'পিন স্ট্যাটাস পরিবর্তিত হয়েছে' : 'Pin status updated');
   };
 
@@ -135,6 +171,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
     if (!itemToDelete) return;
     const updated = wishes.filter((w) => w.id !== itemToDelete);
     saveWishes(updated);
+    deleteBlessingFromCloud(itemToDelete).catch(() => {});
     setItemToDelete(null);
     showNotice(lang === 'bn' ? 'দোয়াটি স্থায়ীভাবে মুছে ফেলা হয়েছে' : 'Du\'a permanently removed');
   };

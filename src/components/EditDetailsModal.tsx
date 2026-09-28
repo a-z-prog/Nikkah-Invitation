@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, Save, RotateCcw, Sparkles, Lock, KeyRound, Check, Camera, Upload } from 'lucide-react';
+import { X, Save, RotateCcw, Sparkles, Lock, KeyRound, Check, Camera, Upload, Cloud } from 'lucide-react';
 import { WeddingData, Language } from '../types';
 import { initialWeddingData } from '../data/initialWeddingData';
+import { compressImage } from '../services/weddingSync';
 
 interface EditDetailsModalProps {
   data: WeddingData;
@@ -94,8 +95,9 @@ export const EditDetailsModal: React.FC<EditDetailsModalProps> = ({
               <h3 className="font-serif-bengali font-bold text-base text-[#FAF9F6]">
                 Customize Wedding Invitation
               </h3>
-              <p className="text-[10px] text-[#C5A059] uppercase tracking-wider font-semibold">
-                Host Admin Mode (Mahmudul Hasan Razin)
+              <p className="text-[10px] text-[#C5A059] uppercase tracking-wider font-semibold flex items-center space-x-1.5">
+                <Cloud className="w-3 h-3 text-emerald-400 inline mr-1" />
+                <span>Live Cloud Sync Active (Host: Mahmudul Hasan Razin)</span>
               </p>
             </div>
           </div>
@@ -210,16 +212,21 @@ export const EditDetailsModal: React.FC<EditDetailsModalProps> = ({
                       <input
                         type="file"
                         accept="image/*"
-                        onChange={(e) => {
+                        onChange={async (e) => {
                           const file = e.target.files?.[0];
                           if (file) {
-                            const reader = new FileReader();
-                            reader.onload = () => {
-                              if (typeof reader.result === 'string') {
-                                handleChange('groomPhoto', reader.result);
-                              }
-                            };
-                            reader.readAsDataURL(file);
+                            try {
+                              const compressed = await compressImage(file, 800, 0.82);
+                              handleChange('groomPhoto', compressed);
+                            } catch (err) {
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (typeof reader.result === 'string') {
+                                  handleChange('groomPhoto', reader.result);
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                            }
                           }
                         }}
                         className="hidden"

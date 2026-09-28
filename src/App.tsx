@@ -12,6 +12,7 @@ import { DigitalCardModal } from './components/DigitalCardModal';
 import { EditDetailsModal } from './components/EditDetailsModal';
 import { HostAuthModal } from './components/HostAuthModal';
 import { Download, Sparkles } from 'lucide-react';
+import { subscribeWeddingData, saveWeddingDataToCloud } from './services/weddingSync';
 
 const WEDDING_DATA_KEY = 'nikkah_razin_kanata_photo_v7';
 const LANG_KEY = 'blessed_nikkah_lang_en_v4';
@@ -115,19 +116,14 @@ export default function App() {
     return initialWeddingData;
   });
 
-  // Ensure any cached legacy data in browser is completely cleaned on mount
+  // Subscribe to real-time Cloud Firestore updates
   useEffect(() => {
-    try {
-      localStorage.removeItem('blessed_nikkah_razin_kanata_en_v1');
-      localStorage.removeItem('blessed_nikkah_razin_kanata_en_v2');
-      localStorage.removeItem('blessed_nikkah_razin_kanata_en_v3');
-      localStorage.removeItem('blessed_nikkah_pure_v6');
-      localStorage.removeItem('blessed_nikkah_lang_v6');
-      localStorage.removeItem('shubho_bibaho_custom_wedding_data');
-      localStorage.removeItem('shubho_bibaho_custom_wedding_data_v1');
-      localStorage.removeItem('islamic_nikkah_pure_v2');
-      localStorage.removeItem('shubho_bibaho_language');
-    } catch (e) {}
+    const unsubscribe = subscribeWeddingData((cloudData) => {
+      setWeddingData(sanitizeWeddingData(cloudData));
+    });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -169,12 +165,16 @@ export default function App() {
     } catch (e) {}
   };
 
-  const handleSaveWeddingData = (updated: WeddingData) => {
+  const handleSaveWeddingData = async (updated: WeddingData) => {
     const sanitized = sanitizeWeddingData(updated);
     setWeddingData(sanitized);
     try {
       localStorage.setItem(WEDDING_DATA_KEY, JSON.stringify(sanitized));
-    } catch (e) {}
+      // Save directly to Firestore Cloud Database so all guests see updates live!
+      await saveWeddingDataToCloud(sanitized);
+    } catch (e) {
+      console.error('Failed to sync to cloud database:', e);
+    }
   };
 
   return (

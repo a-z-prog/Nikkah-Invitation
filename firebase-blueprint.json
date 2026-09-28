@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "WeddingData": {
+      "title": "WeddingData",
+      "description": "Stores the wedding invitation details, schedule, venue, and couple information",
+      "type": "object",
+      "properties": {
+        "groomNameBn": { "type": "string" },
+        "groomNameEn": { "type": "string" },
+        "groomParentsBn": { "type": "string" },
+        "groomParentsEn": { "type": "string" },
+        "groomBioBn": { "type": "string" },
+        "groomBioEn": { "type": "string" },
+        "groomPhoto": { "type": "string" },
+        "brideNameBn": { "type": "string" },
+        "brideNameEn": { "type": "string" },
+        "brideParentsBn": { "type": "string" },
+        "brideParentsEn": { "type": "string" },
+        "brideBioBn": { "type": "string" },
+        "brideBioEn": { "type": "string" },
+        "bridePhoto": { "type": "string" },
+        "monogram": { "type": "string" },
+        "weddingDate": { "type": "string" },
+        "weddingTaglineBn": { "type": "string" },
+        "weddingTaglineEn": { "type": "string" },
+        "mainVenueBn": { "type": "string" },
+        "mainVenueEn": { "type": "string" },
+        "mainVenueCityBn": { "type": "string" },
+        "mainVenueCityEn": { "type": "string" },
+        "contactPhone1": { "type": "string" },
+        "contactName1": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Blessing": {
+      "title": "Blessing",
+      "description": "Guest prayer, blessing, or well-wish message",
+      "type": "object",
+      "properties": {
+        "author": { "type": "string", "maxLength": 100 },
+        "relation": { "type": "string", "maxLength": 100 },
+        "message": { "type": "string", "maxLength": 1000 },
+        "likes": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "avatarBg": { "type": "string" }
+      },
+      "required": ["author", "message"]
+    },
+    "Rsvp": {
+      "title": "Rsvp",
+      "description": "Guest RSVP attendance response",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "attending": { "type": "string", "enum": ["yes", "no"] },
+        "guestsCount": { "type": "number" },
+        "message": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "phone", "attending"]
+    }
+  },
+  "firestore": {
+    "/wedding/{weddingId}": {
+      "schema": "WeddingData",
+      "description": "Publicly readable wedding invitation details"
+    },
+    "/blessings/{blessingId}": {
+      "schema": "Blessing",
+      "description": "Guest blessings and prayers for the couple"
+    },
+    "/rsvps/{rsvpId}": {
+      "schema": "Rsvp",
+      "description": "Guest RSVP entries for attendance tracking"
+    }
+  }
+}
