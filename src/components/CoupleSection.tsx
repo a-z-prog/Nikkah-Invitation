@@ -48,7 +48,7 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({
           <p className="text-stone-500 max-w-xl mx-auto text-xs sm:text-sm">
             {lang === 'bn'
               ? 'আল্লাহর সন্তুষ্টি ও সুন্নাহ অনুসরণে দুই পরিবারের নেক দোয়া ও সম্মতিতে তাদের নতুন জীবনের পথচলা।'
-              : 'With the blessings of parents and seeking the pleasure of Allah, they embark on the journey of marriage.'}
+              : 'Alhamdulillah, with the duas and consent of parents and seeking the pleasure of Allah, they embark on this sacred journey of marriage.'}
           </p>
         </div>
 

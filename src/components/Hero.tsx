@@ -65,7 +65,9 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* Elegant Invitation Line */}
         <p className="text-stone-600 text-xs sm:text-sm font-serif-bengali max-w-md mx-auto italic mt-3 leading-relaxed">
-          “With the blessings of our parents, we cordially invite you to share in our joy and celebrate our union.”
+          {lang === 'bn'
+            ? '“আলহামদুলিল্লাহ, আমাদের পিতা-মাতার দোয়া ও সম্মতিক্রমে, এই আনন্দের মুহূর্তে আপনাদের আন্তরিক উপস্থিতি ও দোয়া কামনা করছি।”'
+            : '“Alhamdulillah, with the duas and consent of our parents, we cordially invite you to share in our joy and celebrate our union.”'}
         </p>
 
         {/* Minimalist Date & Venue Lockup */}
