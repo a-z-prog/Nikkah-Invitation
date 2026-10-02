@@ -39,9 +39,9 @@ export const DigitalCardModal: React.FC<DigitalCardModalProps> = ({
   const formattedTime = (lang === 'bn' ? data.events?.[0]?.timeBn : data.events?.[0]?.timeEn) || (
     !isNaN(dateObj.getTime())
       ? (lang === 'bn'
-          ? 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)'
+          ? 'দুপুর ২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)'
           : dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Walima Feast)')
-      : (lang === 'bn' ? 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)' : '12:00 PM (Walima Feast)')
+      : (lang === 'bn' ? 'দুপুর ২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)' : '2:00 PM (Walima Feast)')
   );
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ai.studio';

@@ -34,11 +34,11 @@ function sanitizeWeddingData(raw: any): WeddingData {
 
   const weddingDate = raw.weddingDate || initialWeddingData.weddingDate;
   const d = new Date(weddingDate);
-  const dateStr = !isNaN(d.getTime()) ? weddingDate.substring(0, 10) : '2026-10-10';
+  const dateStr = !isNaN(d.getTime()) ? weddingDate.substring(0, 10) : '2026-10-09';
   const timeStrEn = !isNaN(d.getTime())
     ? d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Walima Feast)'
-    : '12:00 PM (Walima Feast)';
-  const timeStrBn = 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)';
+    : '2:00 PM (Walima Feast)';
+  const timeStrBn = 'দুপুর ২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)';
 
   const venueNameEn = raw.mainVenueEn || initialWeddingData.mainVenueEn;
   const venueNameBn = raw.mainVenueBn || venueNameEn;

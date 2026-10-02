@@ -128,7 +128,7 @@ const svg = `
 
     <!-- Date & Time -->
     <text x="0" y="-6" text-anchor="middle" font-family="Cinzel, 'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="url(#goldLight)" letter-spacing="2">
-      SATURDAY, 10 OCTOBER 2026  •  12:00 PM
+      FRIDAY, 9 OCTOBER 2026  •  2:00 PM
     </text>
 
     <!-- Venue Location -->
