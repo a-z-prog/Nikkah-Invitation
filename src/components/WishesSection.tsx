@@ -28,7 +28,7 @@ interface WishesSectionProps {
   onRequireAuth?: () => void;
 }
 
-const WISHES_STORAGE_KEY = 'shubho_bibaho_wishes_entries_v2';
+const WISHES_STORAGE_KEY = 'shubho_bibaho_wishes_entries_v3';
 
 export const WishesSection: React.FC<WishesSectionProps> = ({
   lang,
@@ -36,35 +36,35 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
   onRequireAuth
 }) => {
   const [wishes, setWishes] = useState<BlessingEntry[]>(() => {
+    try {
+      localStorage.removeItem('shubho_bibaho_wishes_entries');
+      localStorage.removeItem('shubho_bibaho_wishes_entries_v2');
+    } catch (e) {}
+
     const saved = localStorage.getItem(WISHES_STORAGE_KEY);
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed.filter((w: BlessingEntry) => w.id !== '1' && w.id !== '2' && w.id !== '3');
+        }
       } catch (e) {
-        return initialBlessings;
+        return [];
       }
     }
-    // Also try migrating from old key if exists
-    const oldSaved = localStorage.getItem('shubho_bibaho_wishes_entries');
-    if (oldSaved) {
-      try {
-        return JSON.parse(oldSaved);
-      } catch (e) {
-        return initialBlessings;
-      }
-    }
-    return initialBlessings;
+    return [];
   });
 
   // Real-time listener for guest blessings from Cloud Firestore
   useEffect(() => {
     const unsubscribe = subscribeBlessings((cloudBlessings) => {
-      if (cloudBlessings && cloudBlessings.length > 0) {
-        setWishes(cloudBlessings);
-        try {
-          localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(cloudBlessings));
-        } catch (e) {}
-      }
+      const realBlessings = (cloudBlessings || []).filter(
+        (w) => w.id !== '1' && w.id !== '2' && w.id !== '3'
+      );
+      setWishes(realBlessings);
+      try {
+        localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(realBlessings));
+      } catch (e) {}
     });
     return () => {
       unsubscribe();
@@ -443,12 +443,17 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
 
         {/* Empty State */}
         {sortedWishes.length === 0 && (
-          <div className="text-center py-12 px-4 rounded-2xl bg-[#FAF9F6] border border-stone-200/80">
-            <AlertCircle className="w-8 h-8 text-stone-400 mx-auto mb-2" />
-            <p className="text-stone-600 text-xs sm:text-sm font-medium">
+          <div className="text-center py-12 sm:py-16 px-6 rounded-3xl bg-[#FAF9F6] border border-[#C5A059]/20 shadow-2xs max-w-lg mx-auto my-4">
+            <Heart className="w-10 h-10 text-[#C5A059] mx-auto mb-3 opacity-80" />
+            <p className="text-[#13382C] text-sm sm:text-base font-serif-bengali font-bold mb-1">
               {lang === 'bn'
-                ? 'এই ফিল্টারে কোনো দোয়া পাওয়া যায়নি।'
-                : 'No du\'as found in this category.'}
+                ? 'এখনো কোনো দোয়া পোস্ট করা হয়নি'
+                : 'No du\'as have been posted yet'}
+            </p>
+            <p className="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              {lang === 'bn'
+                ? 'উপরের ফর্মটি ব্যবহার করে বর-কনের নতুন জীবনের জন্য প্রথম আন্তরিক দোয়াটি আপনিই লিখে পাঠান।'
+                : 'Be the first to share your sincere prayers and heartfelt blessings for the newlyweds.'}
             </p>
           </div>
         )}

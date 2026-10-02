@@ -64,35 +64,7 @@ export const initialWeddingData: WeddingData = {
   ]
 };
 
-export const initialBlessings: BlessingEntry[] = [
-  {
-    id: '1',
-    author: 'Mufti Muhammad Faruq',
-    relation: 'Family Elder & Well-wisher',
-    message: 'Barakallahu lakuma wa baraka alaikuma wa jama\'a bainakuma fee khair. May Allah bless Razin and Kaneta with an abundance of peace, affection, and righteous companionship.',
-    likes: 28,
-    createdAt: '2 days ago',
-    avatarBg: 'bg-emerald-100 text-emerald-800'
-  },
-  {
-    id: '2',
-    author: 'Afsana Rahman',
-    relation: 'Cousin & Friend',
-    message: 'MashaAllah TabarakAllah! Sending heartfelt prayers and warmest love for Kaneta and brother Razin. May your bond be blessed in this world and Jannah.',
-    likes: 35,
-    createdAt: 'Yesterday',
-    avatarBg: 'bg-amber-100 text-amber-800'
-  },
-  {
-    id: '3',
-    author: 'Engr. Tanveer Chowdhury',
-    relation: 'Close Friend of Groom',
-    message: 'Alhamdulillah! Congratulations dear brother Razin on entering this beautiful Sunnah journey with Kaneta. May Allah make both of you the coolness of each other\'s eyes.',
-    likes: 22,
-    createdAt: 'Today',
-    avatarBg: 'bg-teal-100 text-teal-800'
-  }
-];
+export const initialBlessings: BlessingEntry[] = [];
 
 export const initialGallery: GalleryPhoto[] = [
   {
