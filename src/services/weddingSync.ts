@@ -18,7 +18,7 @@ const WEDDING_COLLECTION = 'wedding';
 const BLESSINGS_COLLECTION = 'blessings';
 const RSVPS_COLLECTION = 'rsvps';
 
-const LOCAL_BACKUP_KEY = 'nikkah_razin_kanata_cloud_cache_v1';
+const LOCAL_BACKUP_KEY = 'nikkah_razin_kaneta_cloud_cache_v2';
 
 /**
  * Real-time listener for the wedding invitation details.
@@ -80,9 +80,22 @@ export function subscribeWeddingData(
           needsCloudUpdate = true;
         }
 
+        let brideNameEn = cloudData.brideNameEn || initialWeddingData.brideNameEn;
+        let brideNameBn = cloudData.brideNameBn || initialWeddingData.brideNameBn;
+        if (brideNameEn === 'Kanata' || brideNameEn.toLowerCase().includes('kanata')) {
+          brideNameEn = 'Kaneta';
+          needsCloudUpdate = true;
+        }
+        if (brideNameBn === 'কানাতা' || brideNameBn.includes('কানাতা')) {
+          brideNameBn = 'কানেতা';
+          needsCloudUpdate = true;
+        }
+
         const merged: WeddingData = {
           ...initialWeddingData,
           ...cloudData,
+          brideNameEn,
+          brideNameBn,
           weddingTaglineBn: taglineBn,
           weddingTaglineEn: taglineEn,
           events

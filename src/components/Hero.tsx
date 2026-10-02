@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, ChevronDown, Download, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, ChevronDown, Download } from 'lucide-react';
 import { Language, WeddingData } from '../types';
 import { Countdown } from './Countdown';
 
@@ -9,7 +9,11 @@ interface HeroProps {
   onOpenCard: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ data, lang, onOpenCard }) => {
+export const Hero: React.FC<HeroProps> = ({
+  data,
+  lang,
+  onOpenCard
+}) => {
   const dateObj = new Date(data.weddingDate);
   const formattedDate = dateObj.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -86,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ data, lang, onOpenCard }) => {
         {/* Prophetic Blessing (Quiet Typography) */}
         <div className="my-6 max-w-md mx-auto">
           <div className="font-arabic text-sm sm:text-base text-[#13382C]/90 leading-relaxed">
-            {data.propheticDuaAr || 'بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ'}
+            {data.propheticDuaAr || 'بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَকُمَا فِي خَيْرٍ'}
           </div>
           <p className="text-[11px] sm:text-xs text-stone-500 italic mt-1 font-serif-bengali">
             {data.propheticDuaEn || 'May Allah bless you, shower His blessings upon you, and unite you both in goodness.'}
@@ -131,3 +135,4 @@ export const Hero: React.FC<HeroProps> = ({ data, lang, onOpenCard }) => {
     </section>
   );
 };
+

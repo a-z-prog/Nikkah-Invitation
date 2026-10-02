@@ -9,7 +9,11 @@ interface DigitalCardModalProps {
   onClose: () => void;
 }
 
-export const DigitalCardModal: React.FC<DigitalCardModalProps> = ({ data, lang, onClose }) => {
+export const DigitalCardModal: React.FC<DigitalCardModalProps> = ({
+  data,
+  lang,
+  onClose
+}) => {
   const [copied, setCopied] = useState(false);
 
   const handlePrint = () => {

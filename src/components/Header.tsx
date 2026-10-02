@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div>
             <div className="font-serif-bengali font-bold text-sm sm:text-base text-[#13382C] leading-tight">
-              {data.groomNameEn.toLowerCase().includes('razin') ? 'Razin' : data.groomNameEn.split(' ')[0]} &amp; {data.brideNameEn.split(' ')[0] || 'Kanata'}
+              Razin &amp; Kaneta
             </div>
             <div className="text-[10px] sm:text-[11px] text-[#A88338] font-sans-ui tracking-wider uppercase font-medium">
               {lang === 'bn' ? 'ওয়ালিমা ও প্রীতিভোজ' : 'Walima Feast'}

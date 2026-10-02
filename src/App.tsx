@@ -11,10 +11,9 @@ import { Footer } from './components/Footer';
 import { DigitalCardModal } from './components/DigitalCardModal';
 import { EditDetailsModal } from './components/EditDetailsModal';
 import { HostAuthModal } from './components/HostAuthModal';
-import { Download, Sparkles } from 'lucide-react';
 import { subscribeWeddingData, saveWeddingDataToCloud } from './services/weddingSync';
 
-const WEDDING_DATA_KEY = 'nikkah_razin_kanata_photo_v7';
+const WEDDING_DATA_KEY = 'nikkah_razin_kaneta_photo_v8';
 const LANG_KEY = 'blessed_nikkah_lang_en_v4';
 const HOST_PIN_KEY = 'blessed_nikkah_host_pin_v1';
 const DEFAULT_HOST_PIN = '7860';
@@ -73,9 +72,22 @@ function sanitizeWeddingData(raw: any): WeddingData {
     ? raw.brideBioBn
     : initialWeddingData.brideBioBn;
 
+  const brideNameEn = (raw.brideNameEn && raw.brideNameEn !== 'Kanata')
+    ? (raw.brideNameEn.toLowerCase().includes('kanata') ? 'Kaneta' : raw.brideNameEn)
+    : 'Kaneta';
+  const brideNameBn = (raw.brideNameBn && raw.brideNameBn !== 'কানাতা')
+    ? (raw.brideNameBn.includes('কানাতা') ? 'কানেতা' : raw.brideNameBn)
+    : 'কানেতা';
+  const groomNameEn = raw.groomNameEn || 'Mahmudul Hasan Razin';
+  const groomNameBn = raw.groomNameBn || 'মাহমুদুল হাসান রাজিন';
+
   return {
     ...initialWeddingData,
     ...raw,
+    brideNameEn,
+    brideNameBn,
+    groomNameEn,
+    groomNameBn,
     groomPhoto,
     brideBioEn,
     brideBioBn,
@@ -91,6 +103,10 @@ function sanitizeWeddingData(raw: any): WeddingData {
 export default function App() {
   // Purely English as requested by user ("ভাষা হবে অনলি ইংলিশ")
   const [lang, setLang] = useState<Language>('en');
+
+  useEffect(() => {
+    document.title = 'Razin & Kaneta';
+  }, []);
 
   const [weddingData, setWeddingData] = useState<WeddingData>(() => {
     // Purge any stale legacy localStorage items from user's device
