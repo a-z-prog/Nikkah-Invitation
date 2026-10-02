@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ data, lang, onOpenCard }) => {
 
         {/* Minimalist Subtitle */}
         <p className="text-xs sm:text-[13px] uppercase tracking-[0.25em] text-[#A88338] font-medium mb-4">
-          The Nikkah Ceremony of
+          {lang === 'bn' ? 'শুভ ওয়ালিমা ও প্রীতিভোজ' : 'The Walima Feast of'}
         </p>
 
         {/* Couple Names - Minimalist Luxury Typography */}

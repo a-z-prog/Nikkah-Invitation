@@ -55,7 +55,7 @@ function sanitizeWeddingData(raw: any): WeddingData {
     ...existingEvent,
     id: 'walima',
     nameBn: 'ওয়ালিমা ও প্রীতিভোজ',
-    nameEn: 'Walima Ceremony',
+    nameEn: 'Walima Feast',
     dateStr,
     timeEn: timeStrEn,
     timeBn: timeStrBn,

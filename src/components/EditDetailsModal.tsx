@@ -61,7 +61,7 @@ export const EditDetailsModal: React.FC<EditDetailsModalProps> = ({
       ...currentEvent,
       id: 'walima',
       nameBn: 'ওয়ালিমা ও প্রীতিভোজ',
-      nameEn: 'Walima Ceremony',
+      nameEn: 'Walima Feast',
       dateStr,
       timeEn: formattedTimeEn,
       timeBn: formattedTimeBn,

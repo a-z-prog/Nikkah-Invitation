@@ -36,7 +36,7 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
           </p>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif-bengali text-[#13382C] mt-1">
-            {lang === 'bn' ? (data.events[0]?.nameBn || 'ওয়ালিমা ও প্রীতিভোজ') : (data.events[0]?.nameEn || 'Walima Ceremony')}
+            {lang === 'bn' ? (data.events[0]?.nameBn || 'ওয়ালিমা ও প্রীতিভোজ') : (data.events[0]?.nameEn || 'Walima Feast')}
           </h2>
           <FloralDivider className="my-2.5" />
           <p className="text-stone-500 max-w-xl mx-auto text-xs sm:text-sm">

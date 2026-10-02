@@ -46,7 +46,7 @@ export function subscribeWeddingData(
           if (ev.nameEn?.toLowerCase().includes('aqd') || ev.nameBn?.includes('আকদ') || ev.id === 'nikkah') {
             updated.id = 'walima';
             updated.nameBn = 'ওয়ালিমা ও প্রীতিভোজ';
-            updated.nameEn = 'Walima Ceremony';
+            updated.nameEn = 'Walima Feast';
             updated.descriptionBn = 'রাসূলুল্লাহ (সা.)-এর পবিত্র সুন্নাহ অনুযায়ী ওয়ালিমা ও প্রীতিভোজের আয়োজন। আপনাদের আন্তরিক উপস্থিতি ও দোয়া একান্ত কাম্য। (বিশেষ অনুরোধ: কনের ছবি বা ভিডিও তোলা সম্পূর্ণ নিষেধ)।';
             updated.descriptionEn = 'The blessed Walima feast organized in accordance with the prophetic Sunnah. We warmly invite you to join us with prayers and love. (Special Request: Strictly no photography or videography of the bride).';
             changed = true;

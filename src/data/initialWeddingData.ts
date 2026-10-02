@@ -46,7 +46,7 @@ export const initialWeddingData: WeddingData = {
     {
       id: 'walima',
       nameBn: 'ওয়ালিমা ও প্রীতিভোজ',
-      nameEn: 'Walima Ceremony',
+      nameEn: 'Walima Feast',
       dateStr: '2026-10-10',
       timeBn: 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)',
       timeEn: '12:00 PM (Walima Ceremony & Feast)',
