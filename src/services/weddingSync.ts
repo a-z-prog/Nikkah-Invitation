@@ -59,6 +59,10 @@ export function subscribeWeddingData(
             updated.timeBn = 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)';
             changed = true;
           }
+          if (!updated.mapLink || !updated.mapLink.includes('22.1110825')) {
+            updated.mapLink = 'https://www.google.com/maps?q=22.1110825,92.0374952';
+            changed = true;
+          }
           if (changed) {
             needsCloudUpdate = true;
           }

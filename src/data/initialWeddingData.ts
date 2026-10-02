@@ -54,7 +54,7 @@ export const initialWeddingData: WeddingData = {
       venueNameEn: 'Satkania',
       addressBn: 'আনিচ বাড়ি, পূর্ব গাটিয়াডেঙ্গা, সাতকানিয়া, চট্টগ্রাম',
       addressEn: 'Anis bari, East Gatiadenga, Satkania, Chattogram, Bangladesh',
-      mapLink: 'https://maps.google.com/?q=Satkania+Chattogram+Bangladesh',
+      mapLink: 'https://www.google.com/maps?q=22.1110825,92.0374952',
       dressCodeBn: 'শালীন সাদা, অফ-হোয়াইট, ক্রিম ও মার্জিত ইসলামিক পোশাক',
       dressCodeEn: 'Modest Elegant White, Cream & Traditional Formal',
       colorScheme: 'emerald',

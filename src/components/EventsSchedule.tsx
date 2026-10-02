@@ -141,7 +141,21 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
                         <span className="text-stone-500 text-[11px] block mt-0.5">
                           {lang === 'bn' ? event.addressBn : event.addressEn}
                         </span>
+                        <span className="inline-block mt-1 px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 text-[10px] font-mono border border-stone-200">
+                          GPS: 22.1110825, 92.0374952
+                        </span>
                       </div>
+                    </div>
+
+                    {/* Embedded Interactive Google Map Preview */}
+                    <div className="mt-4 rounded-2xl overflow-hidden border border-stone-200/90 relative aspect-[16/9] w-full bg-stone-100 shadow-2xs">
+                      <iframe
+                        title="Walima Venue Location Map"
+                        src="https://maps.google.com/maps?q=22.1110825,92.0374952&hl=bn&z=16&output=embed"
+                        className="w-full h-full border-0"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
                     </div>
                   </div>
                 </div>
@@ -150,13 +164,13 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
                 <div className="p-4 bg-stone-50/70 border-t border-stone-100 flex flex-col gap-2">
                   <div className="flex items-center gap-2">
                     <a
-                      href={event.mapLink}
+                      href="https://www.google.com/maps?q=22.1110825,92.0374952"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2 px-3 rounded-xl bg-white border border-stone-200 text-stone-700 hover:border-[#13382C] hover:text-[#13382C] text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors shadow-2xs"
+                      className="flex-1 py-2 px-3 rounded-xl bg-[#13382C] text-[#E8D7B5] hover:bg-[#0e271f] text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors shadow-2xs"
                     >
-                      <Navigation className="w-3.5 h-3.5 text-[#A88338]" />
-                      <span>{lang === 'bn' ? 'ম্যাপ দেখুন' : 'Map'}</span>
+                      <Navigation className="w-3.5 h-3.5 text-[#E8D7B5]" />
+                      <span>{lang === 'bn' ? 'গুগল ম্যাপে ডিরেকশন (GPS)' : 'Google Maps (GPS)'}</span>
                     </a>
 
                     <a

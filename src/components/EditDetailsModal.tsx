@@ -69,7 +69,9 @@ export const EditDetailsModal: React.FC<EditDetailsModalProps> = ({
       venueNameBn: formData.mainVenueBn || formData.mainVenueEn,
       addressEn: finalAddress,
       addressBn: finalAddress,
-      mapLink: `https://maps.google.com/?q=${encodeURIComponent(formData.mainVenueEn + ' ' + formData.mainVenueCityEn)}`,
+      mapLink: (currentEvent.mapLink && currentEvent.mapLink.includes('22.1110825'))
+        ? currentEvent.mapLink
+        : 'https://www.google.com/maps?q=22.1110825,92.0374952',
       descriptionBn: 'রাসূলুল্লাহ (সা.)-এর পবিত্র সুন্নাহ অনুযায়ী ওয়ালিমা ও প্রীতিভোজের আয়োজন। আপনাদের আন্তরিক উপস্থিতি ও দোয়া একান্ত কাম্য। (বিশেষ অনুরোধ: কনের ছবি বা ভিডিও তোলা সম্পূর্ণ নিষেধ)।',
       descriptionEn: 'The blessed Walima feast organized in accordance with the prophetic Sunnah. We warmly invite you to join us with prayers and love. (Special Request: Strictly no photography or videography of the bride).'
     };

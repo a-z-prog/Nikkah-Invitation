@@ -63,7 +63,7 @@ function sanitizeWeddingData(raw: any): WeddingData {
     venueNameBn,
     addressEn,
     addressBn: addressEn,
-    mapLink: `https://maps.google.com/?q=${encodeURIComponent(venueNameEn + ' ' + cityEn)}`
+    mapLink: 'https://www.google.com/maps?q=22.1110825,92.0374952'
   };
 
   const brideBioEn = (raw.brideBioEn && raw.brideBioEn !== 'Embarking on this blissful new journey of marriage.' && raw.brideBioEn !== '')
