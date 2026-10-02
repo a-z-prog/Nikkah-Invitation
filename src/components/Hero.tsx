@@ -18,10 +18,12 @@ export const Hero: React.FC<HeroProps> = ({ data, lang, onOpenCard }) => {
     day: 'numeric'
   });
 
-  const formattedTime = data.events?.[0]?.timeEn || (
+  const formattedTime = (lang === 'bn' ? data.events?.[0]?.timeBn : data.events?.[0]?.timeEn) || (
     !isNaN(dateObj.getTime())
-      ? dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Nikkah Majlis)'
-      : '12:00 PM (Nikkah Majlis)'
+      ? (lang === 'bn'
+          ? 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)'
+          : dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Walima Feast)')
+      : (lang === 'bn' ? 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)' : '12:00 PM (Walima Feast)')
   );
 
   return (

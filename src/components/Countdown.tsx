@@ -77,7 +77,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate, lang }) => {
     <div className="w-full max-w-sm mx-auto my-3">
       <div className="text-center mb-3">
         <span className="text-[11px] uppercase tracking-[0.2em] text-[#A88338] font-semibold">
-          {lang === 'bn' ? 'পবিত্র আকদ লগ্নের অপেক্ষা' : 'Countdown to Celebration'}
+          {lang === 'bn' ? 'পবিত্র ওয়ালিমা লগ্নের অপেক্ষা' : 'Countdown to Walima Celebration'}
         </span>
       </div>
 

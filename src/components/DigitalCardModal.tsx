@@ -32,10 +32,12 @@ export const DigitalCardModal: React.FC<DigitalCardModalProps> = ({ data, lang, 
     day: 'numeric'
   });
 
-  const formattedTime = data.events?.[0]?.timeEn || (
+  const formattedTime = (lang === 'bn' ? data.events?.[0]?.timeBn : data.events?.[0]?.timeEn) || (
     !isNaN(dateObj.getTime())
-      ? dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Nikkah Majlis)'
-      : '12:00 PM'
+      ? (lang === 'bn'
+          ? 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)'
+          : dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Walima Feast)')
+      : (lang === 'bn' ? 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)' : '12:00 PM (Walima Feast)')
   );
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ai.studio';
@@ -105,7 +107,7 @@ export const DigitalCardModal: React.FC<DigitalCardModalProps> = ({ data, lang, 
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold font-serif-bengali text-[#13382C] mt-1 mb-1">
-            {lang === 'bn' ? 'নিকাহ নিমন্ত্রণপত্র' : 'Nikkah Invitation'}
+            {lang === 'bn' ? 'শুভ ওয়ালিমা নিমন্ত্রণপত্র' : 'Walima Invitation'}
           </h3>
 
           <div className="font-arabic text-xs sm:text-sm text-[#13382C] max-w-sm mx-auto">
@@ -114,8 +116,8 @@ export const DigitalCardModal: React.FC<DigitalCardModalProps> = ({ data, lang, 
 
           <p className="text-xs text-stone-500 italic max-w-xs mx-auto mt-2 leading-relaxed font-serif-bengali">
             {lang === 'bn'
-              ? 'আল্লাহর অশেষ রহমতে আমাদের সন্তানদ্বয়ের সুন্নতি শুভ পরিণয়ে আপনার সপরিবারে আন্তরিক দোয়া ও উপস্থিতি কামনা করছি।'
-              : 'Under the grace of Allah, we cordially invite you to celebrate the union of our children.'}
+              ? 'আল্লাহর অশেষ রহমতে আমাদের সন্তানদ্বয়ের সুন্নতি শুভ পরিণয় ও ওয়ালিমা প্রীতিভোজে আপনার সপরিবারে আন্তরিক দোয়া ও উপস্থিতি কামনা করছি।'
+              : 'Under the grace of Allah, we cordially invite you to celebrate the blessed Walima of our children.'}
           </p>
 
           {/* Bride Photography Strict Restriction Notice on Print/Card */}

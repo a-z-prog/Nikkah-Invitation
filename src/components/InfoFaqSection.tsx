@@ -34,9 +34,9 @@ export const InfoFaqSection: React.FC<InfoFaqSectionProps> = ({ data, lang }) =>
       titleBn: 'নামাজ ও অজুখানার সুব্যবস্থা',
       titleEn: 'Prayer & Wudhu Facilities',
       descBn:
-        'অনুষ্ঠানের মাঝে আসর, মাগরিব ও এশার নামাজের ওয়াক্তে নারী ও পুরুষ মেহমানদের জন্য পৃথক সুপরিসর অজুখানা এবং জামাতে নামাজের উত্তম ব্যবস্থা থাকবে।',
+        'বরের নিজ বাড়িতেই ওয়ালিমা অনুষ্ঠিত হচ্ছে। ওয়াক্তের সময় মেহমানরা চাইলে নিকটস্থ জামে মসজিদে গিয়ে জামাতে নামাজ আদায় করতে পারবেন, আবার বরের নিজ বাড়িতেও মেহমান ও মা-বোনদের জন্য সুন্দরভাবে অজু ও নামাজের সুব্যবস্থা থাকবে।',
       descEn:
-        'Dedicated clean prayer halls and separate wudhu facilities are available for both brothers and sisters for Asr, Maghrib, and Isha prayers.'
+        'As the Walima is celebrated at the groom’s family residence, guests may conveniently offer prayers at the nearby mosque, or comfortably inside the groom’s residence where dedicated wudhu and prayer spaces are arranged for brothers and sisters.'
     },
     {
       icon: <Users className="w-5 h-5 text-[#A88338]" />,
@@ -49,12 +49,12 @@ export const InfoFaqSection: React.FC<InfoFaqSectionProps> = ({ data, lang }) =>
     },
     {
       icon: <Car className="w-5 h-5 text-[#A88338]" />,
-      titleBn: 'নিরাপদ পার্কিং ও দিকনির্দেশনা',
+      titleBn: 'যানবাহন পার্কিং ও দিকনির্দেশনা',
       titleEn: 'Parking & Venue Assistance',
       descBn:
-        'ভেন্যুতে আমন্ত্রিত সম্মানিত অতিথিদের জন্য পর্যাপ্ত ও নিরাপদ ফ্রি ভ্যালেট কার পার্কিং এবং অভ্যর্থনা দলের সার্বক্ষণিক দিকনির্দেশনা থাকবে।',
+        'বরের নিজ বাড়ি সংলগ্ন এলাকায় আমন্ত্রিত সম্মানিত মেহমানদের যানবাহন রাখার সুব্যবস্থা এবং দিকনির্দেশনার জন্য সহায়ক দল উপস্থিত থাকবে।',
       descEn:
-        'Complimentary secure valet parking and on-ground guest coordinators will be present at the venue to assist with directions and parking.'
+        'Convenient parking spaces and welcoming guest coordinators will be present around the groom’s residence to assist with directions and parking.'
     }
   ];
 

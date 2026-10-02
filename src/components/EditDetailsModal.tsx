@@ -48,23 +48,30 @@ export const EditDetailsModal: React.FC<EditDetailsModalProps> = ({
       ? formData.weddingDate.substring(0, 10)
       : '2026-10-10';
 
-    const formattedTime = !isNaN(dateObj.getTime())
-      ? dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Nikkah Majlis)'
-      : '12:00 PM (Nikkah Majlis)';
+    const formattedTimeEn = !isNaN(dateObj.getTime())
+      ? dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Walima Feast)'
+      : '12:00 PM (Walima Feast)';
+
+    const formattedTimeBn = 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)';
 
     const currentEvent = (formData.events && formData.events[0]) || initialWeddingData.events[0];
     const finalAddress = venueAddress.trim() || `${formData.mainVenueEn}, ${formData.mainVenueCityEn}`;
 
     const updatedEvent = {
       ...currentEvent,
+      id: 'walima',
+      nameBn: 'ওয়ালিমা ও প্রীতিভোজ',
+      nameEn: 'Walima Ceremony',
       dateStr,
-      timeEn: formattedTime,
-      timeBn: formattedTime,
+      timeEn: formattedTimeEn,
+      timeBn: formattedTimeBn,
       venueNameEn: formData.mainVenueEn,
-      venueNameBn: formData.mainVenueEn,
+      venueNameBn: formData.mainVenueBn || formData.mainVenueEn,
       addressEn: finalAddress,
       addressBn: finalAddress,
-      mapLink: `https://maps.google.com/?q=${encodeURIComponent(formData.mainVenueEn + ' ' + formData.mainVenueCityEn)}`
+      mapLink: `https://maps.google.com/?q=${encodeURIComponent(formData.mainVenueEn + ' ' + formData.mainVenueCityEn)}`,
+      descriptionBn: 'রাসূলুল্লাহ (সা.)-এর পবিত্র সুন্নাহ অনুযায়ী ওয়ালিমা ও প্রীতিভোজের আয়োজন। আপনাদের আন্তরিক উপস্থিতি ও দোয়া একান্ত কাম্য। (বিশেষ অনুরোধ: কনের ছবি বা ভিডিও তোলা সম্পূর্ণ নিষেধ)।',
+      descriptionEn: 'The blessed Walima feast organized in accordance with the prophetic Sunnah. We warmly invite you to join us with prayers and love. (Special Request: Strictly no photography or videography of the bride).'
     };
 
     onSave({

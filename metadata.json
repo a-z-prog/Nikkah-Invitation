@@ -1,6 +1,6 @@
 {
   "name": "শুভ বিবাহ - ওয়েডিং ইনভাইটেশন",
-  "description": "A modern and elegant Islamic Nikkah digital wedding invitation with Aqd Majlis and Du'a board.",
+  "description": "A modern and elegant Islamic Walima wedding invitation with Du'a board and RSVP.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

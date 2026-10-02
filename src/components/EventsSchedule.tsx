@@ -36,13 +36,13 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
           </p>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif-bengali text-[#13382C] mt-1">
-            {lang === 'bn' ? 'নিকাহ ও আকদ মজলিস' : 'Nikkah & Aqd Ceremony'}
+            {lang === 'bn' ? (data.events[0]?.nameBn || 'ওয়ালিমা ও প্রীতিভোজ') : (data.events[0]?.nameEn || 'Walima Ceremony')}
           </h2>
           <FloralDivider className="my-2.5" />
           <p className="text-stone-500 max-w-xl mx-auto text-xs sm:text-sm">
             {lang === 'bn'
-              ? 'শরিয়াহসম্মত আকদ মজলিস, সুন্নতি নসিহত ও বিশেষ মোনাজাতে আপনাদের সপরিবারে আন্তরিক আমন্ত্রণ জানাচ্ছি।'
-              : 'Join us in heartfelt prayer and celebration for the Nikkah ceremony solemnized in accordance with the Sunnah.'}
+              ? 'রাসূলুল্লাহ (সা.)-এর সুন্নাহসম্মত ওয়ালিমা ও প্রীতিভোজের পবিত্র অনুষ্ঠানে আপনাদের সপরিবারে আন্তরিক আমন্ত্রণ জানাচ্ছি।'
+              : 'Join us in heartfelt prayer and joyous feast for the blessed Walima ceremony solemnized in accordance with the Sunnah.'}
           </p>
         </div>
 
@@ -91,14 +91,14 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
                     <span className="text-[10px] font-bold tracking-widest text-[#A88338] uppercase font-sans-ui">
                       {data.events.length === 1
                         ? lang === 'bn'
-                          ? 'আকদ লগ্ন'
-                          : 'Ceremony'
+                          ? 'ওয়ালিমা লগ্ন'
+                          : 'Walima Feast'
                         : lang === 'bn'
                         ? `পর্ব ০${index + 1}`
                         : `Part 0${index + 1}`}
                     </span>
                     <span className="text-xs font-serif italic text-[#A88338]">
-                      {lang === 'bn' ? 'নিকাহ' : 'Nikkah'}
+                      {lang === 'bn' ? 'ওয়ালিমা' : 'Walima'}
                     </span>
                   </div>
 

@@ -30,10 +30,10 @@ const defaultRsvps: RsvpEntry[] = [
     name: 'মাহমুদুল হাসান',
     phone: '01819871234',
     attending: 'yes',
-    eventsAttending: ['nikkah'],
+    eventsAttending: ['walima'],
     guestsCount: 2,
     dietPreference: 'মোরগ পোলাও ও রেজালা',
-    message: 'বারাকাল্লাহু লাকুমা! ইনশাআল্লাহ আকদ মজলিসে দেখা হবে।',
+    message: 'বারাকাল্লাহু লাকুমা! ইনশাআল্লাহ ওয়ালিমা অনুষ্ঠানে দেখা হবে।',
     createdAt: '১৬ সেপ্টেম্বর ২০২৬'
   }
 ];
@@ -47,7 +47,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [attending, setAttending] = useState<'yes' | 'no'>('yes');
-  const [selectedEvents, setSelectedEvents] = useState<string[]>(['nikkah']);
+  const [selectedEvents, setSelectedEvents] = useState<string[]>(() => data.events.map((e) => e.id));
   const [guestsCount, setGuestsCount] = useState<number>(2);
   const [diet, setDiet] = useState('kacchi');
   const [message, setMessage] = useState('');

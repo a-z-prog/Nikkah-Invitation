@@ -20,8 +20,8 @@ export const initialWeddingData: WeddingData = {
 
   monogram: 'R & K',
   weddingDate: '2026-10-10T12:00:00', // User selected date: 10/10/2026, 12:00 PM
-  weddingTaglineBn: 'নিকাহ ও সুন্নতি বন্ধনে দুটি হৃদয়ের শুভ সূচনা',
-  weddingTaglineEn: 'United in Nikkah under the divine blessings of Allah',
+  weddingTaglineBn: 'পবিত্র সুন্নতি বন্ধন ও শুভ ওয়ালিমা উপলক্ষে দুটি হৃদয়ের শুভ সূচনা',
+  weddingTaglineEn: 'United in Sunnah & Walima celebration under the divine blessings of Allah',
   blessingHeaderBn: 'বিসমিল্লাহির রাহমানির রাহিম',
   blessingHeaderEn: 'In the name of Allah, Most Gracious, Most Merciful',
   blessingVerseBn: '“এবং তাঁর নিদর্শনাবলীর অন্যতম এই যে, তিনি তোমাদের মধ্য হতেই তোমাদের সঙ্গিনী সৃষ্টি করেছেন যাতে তোমরা তাদের নিকট প্রশান্তি লাভ কর এবং তোমাদের মধ্যে পারস্পরিক ভালোবাসা ও সহানুভূতি সৃষ্টি করেছেন।” — সূরা আর-রূম: ২১',
@@ -44,12 +44,12 @@ export const initialWeddingData: WeddingData = {
 
   events: [
     {
-      id: 'nikkah',
-      nameBn: 'নিকাহ ও আকদ মজলিস',
-      nameEn: 'Nikkah & Aqd Ceremony',
+      id: 'walima',
+      nameBn: 'ওয়ালিমা ও প্রীতিভোজ',
+      nameEn: 'Walima Ceremony',
       dateStr: '2026-10-10',
-      timeBn: 'দুপুর ১২:০০ টা (আকদ মজলিস)',
-      timeEn: '12:00 PM (Nikkah Majlis)',
+      timeBn: 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)',
+      timeEn: '12:00 PM (Walima Ceremony & Feast)',
       venueNameBn: 'সাতকানিয়া',
       venueNameEn: 'Satkania',
       addressBn: 'আনিচ বাড়ি, পূর্ব গাটিয়াডেঙ্গা, সাতকানিয়া, চট্টগ্রাম',
@@ -58,8 +58,8 @@ export const initialWeddingData: WeddingData = {
       dressCodeBn: 'শালীন সাদা, অফ-হোয়াইট, ক্রিম ও মার্জিত ইসলামিক পোশাক',
       dressCodeEn: 'Modest Elegant White, Cream & Traditional Formal',
       colorScheme: 'emerald',
-      descriptionBn: 'শরিয়াহসম্মত ইজাব ও কবুলিয়তের পবিত্র আকদ মজলিস। নসিহত ও বিশেষ মোনাজাত অনুষ্ঠিত হবে। (বিশেষ অনুরোধ: কনের ছবি বা ভিডিও তোলা সম্পূর্ণ নিষেধ)।',
-      descriptionEn: 'The solemn Nikkah ceremony solemnized in accordance with the Sunnah. (Special Request: Strictly no photography or videography of the bride).'
+      descriptionBn: 'রাসূলুল্লাহ (সা.)-এর পবিত্র সুন্নাহ অনুযায়ী ওয়ালিমা ও প্রীতিভোজের আয়োজন। আপনাদের আন্তরিক উপস্থিতি ও দোয়া একান্ত কাম্য। (বিশেষ অনুরোধ: কনের ছবি বা ভিডিও তোলা সম্পূর্ণ নিষেধ)।',
+      descriptionEn: 'The blessed Walima feast organized in accordance with the prophetic Sunnah. We warmly invite you to join us with prayers and love. (Special Request: Strictly no photography or videography of the bride).'
     }
   ]
 };

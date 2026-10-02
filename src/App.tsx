@@ -36,9 +36,10 @@ function sanitizeWeddingData(raw: any): WeddingData {
   const weddingDate = raw.weddingDate || initialWeddingData.weddingDate;
   const d = new Date(weddingDate);
   const dateStr = !isNaN(d.getTime()) ? weddingDate.substring(0, 10) : '2026-10-10';
-  const timeStr = !isNaN(d.getTime())
-    ? d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Nikkah Majlis)'
-    : '12:00 PM (Nikkah Majlis)';
+  const timeStrEn = !isNaN(d.getTime())
+    ? d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' (Walima Feast)'
+    : '12:00 PM (Walima Feast)';
+  const timeStrBn = 'দুপুর ১২:০০ টা (ওয়ালিমা ও প্রীতিভোজ)';
 
   const venueNameEn = raw.mainVenueEn || initialWeddingData.mainVenueEn;
   const venueNameBn = raw.mainVenueBn || venueNameEn;
@@ -52,9 +53,12 @@ function sanitizeWeddingData(raw: any): WeddingData {
   const syncedEvent = {
     ...initialWeddingData.events[0],
     ...existingEvent,
+    id: 'walima',
+    nameBn: 'ওয়ালিমা ও প্রীতিভোজ',
+    nameEn: 'Walima Ceremony',
     dateStr,
-    timeEn: timeStr,
-    timeBn: timeStr,
+    timeEn: timeStrEn,
+    timeBn: timeStrBn,
     venueNameEn,
     venueNameBn,
     addressEn,
