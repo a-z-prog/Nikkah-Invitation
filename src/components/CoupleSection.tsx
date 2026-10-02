@@ -3,7 +3,7 @@ import { Sparkles, Heart, CameraOff, ShieldAlert, Camera } from 'lucide-react';
 import { Language, WeddingData } from '../types';
 import { FloralDivider } from './Ornaments';
 import brideFloralImg from '../assets/images/bride_avatar_floral_1790533418146.jpg';
-import groomPhotoDefault from '../assets/images/groom_razin_photo_1790540815819.jpg';
+import groomPhotoDefault from '../assets/images/groom_razin_portrait_1790981962429.jpg';
 
 interface CoupleSectionProps {
   data: WeddingData;

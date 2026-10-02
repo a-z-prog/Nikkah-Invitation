@@ -1,5 +1,5 @@
 import { WeddingData, BlessingEntry, GalleryPhoto } from '../types';
-import groomPhotoDefault from '../assets/images/groom_razin_photo_1790540815819.jpg';
+import groomPhotoDefault from '../assets/images/groom_razin_portrait_1790981962429.jpg';
 
 export const initialWeddingData: WeddingData = {
   groomNameBn: 'মাহমুদুল হাসান রাজিন',
