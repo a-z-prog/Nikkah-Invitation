@@ -146,19 +146,23 @@ const svg = `
 
 async function generate() {
   const publicOut = path.resolve('public', 'og-preview.jpg');
+  const publicOutV2 = path.resolve('public', 'og-preview-v2.jpg');
   const distDir = path.resolve('dist');
   const distOut = path.resolve('dist', 'og-preview.jpg');
+  const distOutV2 = path.resolve('dist', 'og-preview-v2.jpg');
 
   const buffer = await sharp(Buffer.from(svg))
-    .jpeg({ quality: 95, chromaSubsampling: '4:4:4' })
+    .jpeg({ quality: 86, mozjpeg: true })
     .toBuffer();
 
   fs.writeFileSync(publicOut, buffer);
-  console.log('Saved to ' + publicOut);
+  fs.writeFileSync(publicOutV2, buffer);
+  console.log('Saved to public/og-preview.jpg & public/og-preview-v2.jpg');
 
   if (fs.existsSync(distDir)) {
     fs.writeFileSync(distOut, buffer);
-    console.log('Saved to ' + distOut);
+    fs.writeFileSync(distOutV2, buffer);
+    console.log('Saved to dist/og-preview.jpg & dist/og-preview-v2.jpg');
   }
 }
 
